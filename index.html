@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Sandbox</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="mode-home">
+  <!-- Top Bar (visible in results mode, minimal in home mode) -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="/" class="logo-small" aria-label="Search Sandbox">
+        <span class="g-blue">S</span><span class="g-red">e</span><span class="g-yellow">a</span><span class="g-blue">r</span><span class="g-green">c</span><span class="g-red">h</span>
+      </a>
+      <form id="results-search-form" class="search-form results-search-form">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input id="results-search-input" type="text" autocomplete="off" placeholder="輸入搜尋內容或繼續追問..." />
+          <button type="button" id="clear-btn" class="clear-btn" title="清除">&times;</button>
+          <button type="submit" class="search-submit-btn" title="搜尋">搜尋</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="topbar-right">
+      <div class="session-badge" id="session-badge" title="受試者與輪次資訊"></div>
+      <button type="button" id="terminate-btn" class="terminate-btn">
+        轉為實體
+      </button>
+    </div>
+  </header>
+
+  <!-- Home View -->
+  <main class="home-container" id="home-view">
+    <h1 class="logo-large">
+      <span class="g-blue">S</span><span class="g-red">e</span><span class="g-yellow">a</span><span class="g-blue">r</span><span class="g-green">c</span><span class="g-red">h</span>
+    </h1>
+    <form id="home-search-form" class="search-form home-search-form">
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <input id="home-search-input" type="text" autocomplete="off" autofocus placeholder="在搜尋沙盒中提問或輸入關鍵字..." />
+      </div>
+      <div class="home-actions">
+        <button type="submit" class="btn-primary">沙盒搜尋</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- Results View -->
+  <main class="results-container" id="results-view">
+    <div id="conversation-thread" class="conversation-thread"></div>
+
+    <div id="loading-indicator" class="loading-indicator hidden">
+      <div class="spinner"></div>
+      <span>正在即時搜尋並彙整資訊...</span>
+    </div>
+
+    <div id="error-banner" class="error-banner hidden"></div>
+
+    <!-- Dedicated Follow-up Bar -->
+    <form id="followup-form" class="followup-form hidden">
+      <div class="search-box followup-box">
+        <input id="followup-input" type="text" autocomplete="off" placeholder="針對上方結果繼續追問..." />
+        <button type="submit" id="followup-submit-btn" class="followup-submit-btn">追問</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- Termination Modal -->
+  <div id="terminate-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <h2 id="modal-title">轉為實體行動</h2>
+      <p class="modal-desc">您即將結束線上搜尋並轉為實體行動。請簡述促使您做出這個決定的原因：</p>
+      <div class="modal-meta">
+        <span>最後一輪提問：</span>
+        <strong id="modal-last-query">（無）</strong>
+      </div>
+      <textarea id="terminate-reason" rows="4" placeholder="例如：已經找到足夠的店家地址與營業時間，準備直接前往..."></textarea>
+      <div class="modal-actions">
+        <button type="button" id="modal-cancel-btn" class="btn-secondary">取消</button>
+        <button type="button" id="modal-submit-btn" class="btn-danger">確認送出</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
