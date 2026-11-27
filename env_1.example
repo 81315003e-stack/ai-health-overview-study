@@ -1,0 +1,16 @@
+# OpenRouter API Key (Required for /api/search)
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+
+# Optional: OpenRouter model (defaults to google/gemini-2.5-flash:online)
+# Adding :online or using plugins: [{ id: "web" }] enables real-time web search
+OPENROUTER_MODEL=google/gemini-2.5-flash:online
+
+# Optional: OpenRouter HTTP-Referer & X-Title headers
+OPENROUTER_SITE_URL=http://localhost:3000
+OPENROUTER_APP_NAME=Search Sandbox
+
+# Optional: Server port (defaults to 3000)
+PORT=3000
+
+# Optional: Google Apps Script Web App URL for syncing logs to Google Sheets
+GAS_WEBHOOK_URL=
